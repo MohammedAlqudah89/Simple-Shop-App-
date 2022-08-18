@@ -33,6 +33,7 @@ void main() async {
       debugShowCheckedModeBanner: false,
         theme: lightTheme,
 // hello
+    //hi
         home:  const SocialHomeScreen(),
     );
   }

@@ -51,6 +51,12 @@ dependencies:
   path_provider_windows: ^2.1.2
   webview_flutter_android: ^2.9.5
 
+#  firebase_dependencies
+  firebase_core: ^1.20.1
+  firebase_auth: ^3.6.3
+  cloud_firestore: ^3.4.4
+
+
 
 dev_dependencies:
   flutter_test:
