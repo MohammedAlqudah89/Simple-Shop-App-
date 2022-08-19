@@ -4,9 +4,15 @@ abstract class RegisterStates {}
 class RegisterSocialInitializeState extends RegisterStates{}
 
 
-class RegisterSocialLoadState extends RegisterStates{}
+class RegisterGetUserDAtaLoadState extends RegisterStates{}
 
-class RegisterSocialSuccessState extends RegisterStates{}
+class RegisterGetUserDAtaSuccessState extends RegisterStates{}
 
-class RegisterSocialErrorState extends RegisterStates{}
+class RegisterGetUserDAtaErrorState extends RegisterStates{}
+
+class RegisterSetUserDataLoadState extends RegisterStates{}
+
+class RegisterSetUserDataSuccessState extends RegisterStates{}
+
+class RegisterSetUserDataErrorState extends RegisterStates{}
 

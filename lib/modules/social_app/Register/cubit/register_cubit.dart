@@ -1,7 +1,10 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_social_app/modules/social_app/Register/cubit/states.dart';
+
+import '../../../../models/social_model/usre_social_model.dart';
 
 class RegisterCubit extends Cubit <RegisterStates>
 {
@@ -16,21 +19,51 @@ class RegisterCubit extends Cubit <RegisterStates>
     required email,
     required password,
     required phone,
+
 })
   {
-    emit(RegisterSocialLoadState());
+    emit(RegisterGetUserDAtaLoadState());
     FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password
     ).then((value) {
-      print(value.user!.email);
-      print(value.user!.uid);
+      setUserData(name: name, email: email, uid: value.user!.uid, phone: phone);
 
-      emit(RegisterSocialSuccessState());
     }
     ).catchError((error){
       print(error.toString());
-      emit(RegisterSocialErrorState());
+      emit(RegisterGetUserDAtaErrorState());
     });
+  }
+
+
+  void setUserData (
+  {
+    required name,
+    required email,
+    required uid,
+    required phone,
+
+})
+  {
+    emit(RegisterSetUserDataLoadState());
+    UserDataModel model =UserDataModel(name: name,
+        email: email,
+        phone: phone,
+        uid: uid,
+        isVerified: false);
+
+    FirebaseFirestore.instance.collection('users')
+        .doc(uid)
+        .set(model.toMap()
+    ).then((value)
+    {
+      emit(RegisterSetUserDataSuccessState());
+    }).catchError((error)
+    {
+      emit(RegisterSetUserDataErrorState());
+    }
+    );
+
   }
 }

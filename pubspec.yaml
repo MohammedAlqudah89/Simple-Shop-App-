@@ -50,6 +50,7 @@ dependencies:
   fluentui_icons: ^1.0.0
   path_provider_windows: ^2.1.2
   webview_flutter_android: ^2.9.5
+  curved_navigation_bar: ^1.0.3
 
 #  firebase_dependencies
   firebase_core: ^1.20.1

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_social_app/modules/social_app/Register/cubit/register_cubit.dart';
+import 'package:simple_social_app/modules/social_app/login/login_screen.dart';
 import 'package:simple_social_app/shared/component/component/component.dart';
 
 import 'cubit/states.dart';
@@ -25,8 +26,10 @@ class RegisterLoginScreen extends StatelessWidget
       child: BlocConsumer <RegisterCubit, RegisterStates>(
         listener: (context, state)
         {
-          // if(state is RegisterSocialErrorState)
-          //   toastBuilder(message: , state: state)
+          if(state is RegisterSetUserDataSuccessState)
+            {
+              navigateTo(context, SocialLoginScreen(),);
+            }
         },
         builder: (context, state)
         {
@@ -123,7 +126,7 @@ class RegisterLoginScreen extends StatelessWidget
                         const SizedBox(height: 20.0,),
 
                         ConditionalBuilder(
-                          condition: state is !RegisterSocialLoadState,
+                          condition: state is !RegisterGetUserDAtaLoadState,
                           builder: (context) {
                             return defaultButton(
                               function: ()
@@ -136,6 +139,7 @@ class RegisterLoginScreen extends StatelessWidget
                                     password: passwordController.text,
                                     phone: phoneController.text,
                                   );
+
                                 }
                               },
                               text: 'Register',

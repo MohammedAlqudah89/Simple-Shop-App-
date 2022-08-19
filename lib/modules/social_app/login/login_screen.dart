@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_social_app/modules/social_app/login/cubit/cubit.dart';
 import 'package:simple_social_app/shared/component/component/component.dart';
+import 'package:simple_social_app/shared/network/local_network/cached_helper.dart';
 
+import '../../../layout/social_layout_screen.dart';
 import '../Register/register_screen.dart';
 import '../home/social_home_app.dart';
 import 'cubit/states.dart';
@@ -27,7 +29,13 @@ class SocialLoginScreen extends StatelessWidget
             {
               toastBuilder(message: 'wrong credential ', state: ToastState.ERROR);
             }
-
+          if (state is LoginSocialSuccessState)
+            {
+              CachedHelper.saveData(key: 'uid', value: state.uid).then((value)
+              {
+                navigateAndFinish(context, SocialLayoutScreen());
+              });
+            }
         },
         builder: (context,state)
         {
@@ -102,7 +110,7 @@ class SocialLoginScreen extends StatelessWidget
                                       email: emailController.text,
                                       password: passwordController.text
                                   );
-                                  navigateTo(context, SocialHomeScreen());
+                                  navigateTo(context, SocialLayoutScreen());
                                 }
                               },
                               text: 'login',
