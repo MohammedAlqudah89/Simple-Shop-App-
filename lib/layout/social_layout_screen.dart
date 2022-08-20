@@ -2,8 +2,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_social_app/layout/cubit/states.dart';
-import 'package:simple_social_app/shared/component/component/component.dart';
+import 'package:simple_social_app/shared/component/constant/constant.dart';
 
 import 'cubit/cubit.dart';
 
@@ -19,7 +20,29 @@ class SocialLayoutScreen extends StatelessWidget
 
         return Scaffold(
           appBar: AppBar(
-            title:  const Text('Feeds'),
+            title:  Text(model.titles[model.currentIndex],
+            style: GoogleFonts.lato(
+              textStyle: Theme.of(context).textTheme.headline4,
+              fontStyle:FontStyle.italic,
+              fontSize: 35.0,
+
+            ),),
+            actions:
+            [
+              IconButton(onPressed: () {},
+                  icon: const Icon(Icons.search), color: Colors.grey[600],),
+
+                 const SizedBox(width: 5.0,),
+              TextButton(onPressed: ()
+              {
+                signOut(context);
+              },
+                  child:  Text('Sign-out', style:GoogleFonts.lato(
+                    textStyle: Theme.of(context).textTheme.headline4,
+                    fontSize: 18.0,
+                    fontStyle:FontStyle.italic,
+                  ), ),
+              )],
           ),
           body: model.screens[model.currentIndex],
 
@@ -61,14 +84,16 @@ class SocialLayoutScreen extends StatelessWidget
           //   ],
           // ),
           bottomNavigationBar: CurvedNavigationBar(
+
             index: model.currentIndex,
-            items: 
+            items:
             const [
-              Icon(Icons.home, size: 30,),
-              Icon(Icons.home, size: 30,),
-              Icon(Icons.home, size: 30,),
-              Icon(Icons.home, size: 30,),
+              Icon(Icons.home, size: 30, color: Colors.grey, ),
+              Icon(Icons.chat, size: 30,color: Colors.grey,),
+              Icon(Icons.person, size: 30,color: Colors.grey,),
+              Icon(Icons.settings, size: 30,color: Colors.grey,),
             ],
+
             onTap: (index)
             {
               model.changeNavBar(index);
