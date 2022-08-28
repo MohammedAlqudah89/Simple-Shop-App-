@@ -47,10 +47,14 @@ class RegisterCubit extends Cubit <RegisterStates>
 })
   {
     emit(RegisterSetUserDataLoadState());
-    UserDataModel model =UserDataModel(name: name,
+    UserDataModel model =UserDataModel(
+        name: name,
         email: email,
         phone: phone,
         uid: uid,
+        coverImage:'https://img.freepik.com/free-photo/coworkers-working-together-office-with-laptop_23-2148908787.jpg?size=626&ext=jpg',
+        bio: 'write your bio ...',
+        image: 'https://img.freepik.com/free-photo/person-taking-break-from-working-office_23-2149229016.jpg?size=626&ext=jpg',
         isVerified: false);
 
     FirebaseFirestore.instance.collection('users')

@@ -368,6 +368,24 @@ Color?  ChooseColor (ToastState state)
   }
 
 
+PreferredSizeWidget appBarBuilder (
+{
+    required BuildContext context,
+  String? title,
+  IconData? icon,
+  List<Widget>? actions,
+})
+  {
+    return AppBar(
+      leading: IconButton(onPressed:(){
+        Navigator.pop(context);
+      } , icon: Icon(icon),),
+      title:  Text(title!),
+      actions: actions,
+
+    );
+  }
+
 
 
 // Widget buildIconFavoriteButton (context) =>

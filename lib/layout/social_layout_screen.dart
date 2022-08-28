@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_social_app/layout/cubit/states.dart';
+import 'package:simple_social_app/shared/component/component/component.dart';
 import 'package:simple_social_app/shared/component/constant/constant.dart';
 
+import '../modules/social_app/new_posts/new_posts_screen.dart';
 import 'cubit/cubit.dart';
 
 class SocialLayoutScreen extends StatelessWidget
@@ -14,7 +16,12 @@ class SocialLayoutScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SocialLayoutCubit, SocialLayoutStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is SocialNewPostState)
+          {
+            navigateTo(context, NewPostScreen());
+          }
+      },
       builder: (context, state) {
         var model = SocialLayoutCubit.get(context);
 
@@ -30,9 +37,10 @@ class SocialLayoutScreen extends StatelessWidget
             actions:
             [
               IconButton(onPressed: () {},
-                  icon: const Icon(Icons.search), color: Colors.grey[600],),
+                icon: const Icon(Icons.notification_important), color: Colors.grey[600], iconSize: 20, ),
+              IconButton(onPressed: () {},
+                  icon: const Icon(Icons.search), color: Colors.grey[600], iconSize: 20.0,),
 
-                 const SizedBox(width: 5.0,),
               TextButton(onPressed: ()
               {
                 signOut(context);
@@ -90,6 +98,7 @@ class SocialLayoutScreen extends StatelessWidget
             const [
               Icon(Icons.home, size: 30, color: Colors.grey, ),
               Icon(Icons.chat, size: 30,color: Colors.grey,),
+              Icon(Icons.upload_file, size: 30,color: Colors.grey,),
               Icon(Icons.person, size: 30,color: Colors.grey,),
               Icon(Icons.settings, size: 30,color: Colors.grey,),
             ],

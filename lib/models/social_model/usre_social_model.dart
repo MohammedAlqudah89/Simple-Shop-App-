@@ -4,6 +4,9 @@ class UserDataModel
   late final String name;
    late final String email;
    late final String phone;
+   late final String image;
+   late final String coverImage;
+   late final String bio;
    late final bool isVerified;
 
 
@@ -12,6 +15,9 @@ class UserDataModel
      required this.email,
      required this.phone,
      required this.uid,
+     required this.image,
+     required this.bio,
+     required this.coverImage,
      required this.isVerified,
 
 });
@@ -20,6 +26,9 @@ class UserDataModel
      uid=json['uid']??'';
      email=json['email']??'';
      phone=json['phone']??'';
+     image=json['image']??'';
+     bio=json['bio']??'';
+     coverImage=json['coverImage']??'';
      name=json['name']??'';
      isVerified=json['isVerified']??'';
 
@@ -31,6 +40,9 @@ class UserDataModel
        'name': name,
        'email': email,
        'phone': phone,
+       'coverImage':coverImage,
+       'bio': bio,
+       'image': image,
        'isVerified': isVerified,
 
      };
